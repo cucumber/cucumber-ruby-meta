@@ -14,3 +14,9 @@ The gems linked in this meta repository need references to each other. Run the f
 ```shell
 source scripts/setup_env
 ```
+
+The `Makefile` will also allow you to run tests on all sub-repos:
+
+```shell
+make
+```
