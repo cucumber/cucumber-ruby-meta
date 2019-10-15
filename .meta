@@ -1,0 +1,7 @@
+{
+  "projects": {
+    "cucumber-ruby": "git@github.com:cucumber/cucumber-ruby.git",
+    "cucumber-ruby-core": "git@github.com:cucumber/cucumber-ruby-core.git",
+    "cucumber-ruby-wire": "git@github.com:cucumber/cucumber-ruby-wire.git"
+  }
+}
