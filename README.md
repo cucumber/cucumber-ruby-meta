@@ -20,3 +20,10 @@ The `Makefile` will also allow you to run tests on all sub-repos:
 ```shell
 make
 ```
+
+Alternatively, you can use `meta`to handle that:
+
+```shell
+meta exec bundle             # Will run bundler in all sub-repos
+meta exec "bundle exec rake" # Will run tests on all sub-repos
+```
