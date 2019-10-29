@@ -21,7 +21,6 @@ commands:
           name: install meta
           command: |
             npm install --no-save meta
-            alias meta=$(pwd)/node_modules/meta/bin/meta
 
   clone_sub_repos:
     description: "Clone sub-repositories"
@@ -29,7 +28,7 @@ commands:
       - run:
           name: "Clone with meta"
           command: |
-            meta git update
+            node_modules/meta/bin/meta git update
 
   test:
     description: "Run test on all sub-repos"
@@ -38,8 +37,8 @@ commands:
           name: "Run tests"
           command: |
             source scripts/setup_env
-            meta exec bundle
-            meta exec "bundle exec rake"
+            node_modules/meta/bin/meta exec bundle
+            node_modules/meta/bin/meta exec "bundle exec rake"
 
 jobs:
   ruby-26:
