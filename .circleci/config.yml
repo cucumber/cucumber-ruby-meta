@@ -20,7 +20,8 @@ commands:
       - run:
           name: install meta
           command: |
-            sudo npm install -g meta
+            npm install --no-save meta
+            alias meta=$(pwd)/node_modules/meta/bin/meta
 
   clone_sub_repos:
     description: "Clone sub-repositories"
