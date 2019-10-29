@@ -5,15 +5,18 @@
 version: 2.0
 
 commands:
-  get_meta:
-    description: "Install node and meta"
-
+  get_npm:
+    description: "Install nodejs"
     steps:
       - run:
           name: Install nodejs
           command: |
             curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
             sudo apt-get install -y nodejs
+
+  get_meta:
+    description: "Install meta"
+    steps:
       - run:
           name: install meta
           command: |
@@ -21,18 +24,18 @@ commands:
 
   clone_sub_repos:
     description: "Clone sub-repositories"
-
     steps:
       - run:
           name: "Clone with meta"
-          commands: meta git update
+          command: |
+            meta git update
 
   test:
     description: "Run test on all sub-repos"
     steps:
       - run:
           name: "Run tests"
-          commands: |
+          command: |
             source scripts/setup_env
             meta exec bundle
             meta exec "bundle exec rake"
@@ -44,6 +47,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - get_npm
       - get_meta
       - clone_sub_repos
       - test
@@ -54,6 +58,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - get_npm
       - get_meta
       - clone_sub_repos
       - test
@@ -64,6 +69,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - get_npm
       - get_meta
       - clone_sub_repos
       - test
@@ -74,6 +80,7 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - get_npm
       - get_meta
       - clone_sub_repos
       - test
