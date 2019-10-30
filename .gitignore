@@ -2,3 +2,5 @@ Gemfile.lock
 /cucumber-ruby/
 /cucumber-ruby-core/
 /cucumber-ruby-wire/
+node_modules/
+package-lock.json
