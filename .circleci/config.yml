@@ -30,6 +30,16 @@ commands:
           command: |
             node_modules/meta/bin/meta git update
 
+  use_same_branch:
+    description: "Use same branch on all sub-repos"
+    steps:
+      - run:
+          name: "use correct branch on all sub-repos"
+          command:
+            git_branch=$(git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3)
+            node_modules/meta/bin/meta git checkout $git_branch
+            node_modules/meta/bin/meta git pull
+
   test:
     description: "Run test on all sub-repos"
     steps:
@@ -50,6 +60,7 @@ jobs:
       - install_npm
       - install_meta
       - clone_sub_repos
+      - use_same_branch
       - test
 
   ruby-25:
@@ -61,6 +72,7 @@ jobs:
       - install_npm
       - install_meta
       - clone_sub_repos
+      - use_same_branch
       - test
 
   ruby-24:
@@ -72,6 +84,7 @@ jobs:
       - install_npm
       - install_meta
       - clone_sub_repos
+      - use_same_branch
       - test
 
   ruby-23:
@@ -83,6 +96,7 @@ jobs:
       - install_npm
       - install_meta
       - clone_sub_repos
+      - use_same_branch
       - test
 
 
