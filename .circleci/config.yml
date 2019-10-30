@@ -2,79 +2,86 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
-version: 2.0
+version: 2.1
 
 commands:
-  get_meta:
-    description: "Install node and meta"
-
+  install_npm:
+    description: "Install nodejs"
     steps:
       - run:
           name: Install nodejs
           command: |
             curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
             sudo apt-get install -y nodejs
+
+  install_meta:
+    description: "Install meta"
+    steps:
       - run:
           name: install meta
           command: |
-            sudo npm install -g meta
+            npm install --no-save meta
 
   clone_sub_repos:
     description: "Clone sub-repositories"
-
     steps:
       - run:
           name: "Clone with meta"
-          commands: meta git update
+          command: |
+            node_modules/meta/bin/meta git update
 
   test:
     description: "Run test on all sub-repos"
     steps:
       - run:
           name: "Run tests"
-          commands: |
+          command: |
             source scripts/setup_env
-            meta exec bundle
-            meta exec "bundle exec rake"
+            node_modules/meta/bin/meta exec bundle
+            node_modules/meta/bin/meta exec "bundle exec rake"
 
 jobs:
-  "ruby-2.6":
+  ruby-26:
     docker:
        - image: circleci/ruby:2.6
     working_directory: ~/repo
     steps:
       - checkout
-      - get_meta
+      - install_npm
+      - install_meta
       - clone_sub_repos
       - test
 
-  "ruby-2.5":
+  ruby-25:
     docker:
        - image: circleci/ruby:2.5
     working_directory: ~/repo
     steps:
       - checkout
-      - get_meta
+      - install_npm
+      - install_meta
       - clone_sub_repos
       - test
 
-  "ruby-2.4":
+  ruby-24:
     docker:
        - image: circleci/ruby:2.4
     working_directory: ~/repo
     steps:
       - checkout
-      - get_meta
+      - install_npm
+      - install_meta
       - clone_sub_repos
       - test
 
-  "ruby-2.3":
+  ruby-23:
     docker:
        - image: circleci/ruby:2.3
     working_directory: ~/repo
     steps:
       - checkout
-      - get_meta
+      - install_npm
+      - install_meta
       - clone_sub_repos
       - test
 
@@ -84,7 +91,7 @@ workflows:
   build:
     jobs:
       # Keep lowest ruby-* version in sync with cucumber.gemspec & .rubocop.yml
-      - "ruby-2.6"
-      - "ruby-2.5"
-      - "ruby-2.4"
-      - "ruby-2.3"
+      - ruby-26
+      - ruby-25
+      - ruby-24
+      - ruby-23
