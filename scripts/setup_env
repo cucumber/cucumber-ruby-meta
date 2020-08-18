@@ -1,4 +1,4 @@
-__cucumber_ruby_meta="$(cd "$(dirname $0)"/.. && pwd)"
+__cucumber_ruby_meta="$(cd "$(dirname ${BASH_SOURCE[0]})"/.. && pwd)"
 
 export CUCUMBER_RUBY="${__cucumber_ruby_meta}/cucumber-ruby"
 export CUCUMBER_RUBY_CORE="${__cucumber_ruby_meta}/cucumber-ruby-core"
