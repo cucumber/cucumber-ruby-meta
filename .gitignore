@@ -4,3 +4,4 @@ Gemfile.lock
 /cucumber-ruby-wire/
 node_modules/
 package-lock.json
+secrets/
