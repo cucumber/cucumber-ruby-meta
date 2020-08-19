@@ -81,4 +81,4 @@ workflows:
       # Keep lowest ruby-* version in sync with cucumber.gemspec & .rubocop.yml
       - ruby-25
       - ruby-26
-      - ruby-25
+      - ruby-27
