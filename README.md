@@ -9,28 +9,29 @@ Uses [meta](https://github.com/mateodelnorte/meta) to handle multi-repositories.
 
 ## Using this repo
 
-First, install [meta](https://github.com/mateodelnorte/meta) if this is not done yet:
+It is highly recommended you clone this repo as a sibling of the `cucumber/cucumber`
+monorepo. When you do this, the dependencies on `cucumber-*` gems from the monorepo
+will use the local files.
+
+When you have cloned, install [meta](https://github.com/mateodelnorte/meta):
 
 ```shell
 npm install -g meta
 ```
 
-Clone the repositories useful for `cucumber-ruby` development:
+Clone the `cucumber-ruby`, `cucumber-ruby-core` and `cucumber-ruby-wire` repositories:
 
 ```shell
 meta git update
 ```
 
-This will clone `cucumber-ruby`, `cucumber-ruby-core` and `cucumber-ruby-wire` inside the repo.
-
-
-## Helpers
-
-The gems linked in this meta repository need references to each other. Run the following command to handle that:
+To create a new branch in all repos:
 
 ```shell
-source scripts/setup_env
+meta git checkout -b the-branch
 ```
+
+## Helpers
 
 You can use `meta` to run commands on all sub-repos, for example:
 
