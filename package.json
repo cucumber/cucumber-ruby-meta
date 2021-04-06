@@ -1,0 +1,24 @@
+{
+  "name": "cucumber-ruby-meta",
+  "version": "1.0.0",
+  "private": true,
+  "description": "meta-repository to handle all repository linked to Cucumber-ruby:  - [cucumber-ruby](https://github.com/cucumber/cucumber-ruby)  - [cucumber-ruby-core](https://github.com/cucumber/cucumber-ruby-core)  - [cucumber-ruby-wire](https://github.com/cucumber/cucumber-ruby-wire)",
+  "main": "index.js",
+  "dependencies": {
+    "meta": "^2.2.8"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cucumber/cucumber-ruby-meta.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cucumber/cucumber-ruby-meta/issues"
+  },
+  "homepage": "https://github.com/cucumber/cucumber-ruby-meta#readme"
+}

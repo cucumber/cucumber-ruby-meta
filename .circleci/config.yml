@@ -36,8 +36,7 @@ commands:
       - run:
           name: "use correct branch on all sub-repos"
           command:
-            git_branch=$(git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3)
-            node_modules/meta/bin/meta git checkout $git_branch
+            node_modules/meta/bin/meta git checkout $CIRCLE_BRANCH
             node_modules/meta/bin/meta git pull
 
   test:
@@ -51,6 +50,18 @@ commands:
             node_modules/meta/bin/meta exec "bundle exec rake"
 
 jobs:
+  ruby-27:
+    docker:
+       - image: circleci/ruby:2.7
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - install_npm
+      - install_meta
+      - clone_sub_repos
+      - use_same_branch
+      - test
+
   ruby-26:
     docker:
        - image: circleci/ruby:2.6
@@ -75,37 +86,11 @@ jobs:
       - use_same_branch
       - test
 
-  ruby-24:
-    docker:
-       - image: circleci/ruby:2.4
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - install_npm
-      - install_meta
-      - clone_sub_repos
-      - use_same_branch
-      - test
-
-  ruby-23:
-    docker:
-       - image: circleci/ruby:2.3
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - install_npm
-      - install_meta
-      - clone_sub_repos
-      - use_same_branch
-      - test
-
-
 workflows:
   version: 2
   build:
     jobs:
       # Keep lowest ruby-* version in sync with cucumber.gemspec & .rubocop.yml
-      - ruby-26
       - ruby-25
-      - ruby-24
-      - ruby-23
+      - ruby-26
+      - ruby-27
